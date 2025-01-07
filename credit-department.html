@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Department</title>
+    <style>
+        /* Sidebar tetap seperti sebelumnya */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        /* Gaya untuk konten utama */
+        .main-content {
+            margin-left: 270px; /* Menggeser konten utama ke kanan agar tidak tertutup sidebar */
+            padding: 30px;
+            background-color: #ecf0f1;
+        }
+
+        /* Gaya untuk bukti peminjaman yang dipindahkan ke kiri */
+        .bukti-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-right: 30px;
+            width: 400px; /* Ukuran kotak lebih kecil */
+            margin-left: 0%; /* Agar di sebelah kanan sidebar */
+        }
+
+        .bukti-container h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .anggota-box {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .anggota-box h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .anggota-box p {
+            margin: 10px 0;
+        }
+
+        .anggota-box a.view-details {
+            color: #2980b9;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .details {
+            display: none;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .details p {
+            margin: 5px 0;
+            color: #34495e;
+        }
+
+        /* Button kirim laporan */
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        /* Gaya untuk alert */
+        .alert {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            animation: showAlert 3s forwards;
+        }
+
+        @keyframes showAlert {
+            from {
+                right: -300px;
+            }
+            to {
+                right: 20px;
+            }
+        }
+
+        /* Table Style */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #2980b9;
+            color: white;
+            font-size: 16px;
+        }
+        td {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar tetap seperti sebelumnya -->
+    <div class="sidebar">
+        <h2>Credit Department</h2>
+        <a href="admin-kredit.html">Laporan Bulanan</a>
+        <a href="#" onclick="logout()">Keluar</a>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="main-content">
+        <!-- Section untuk arsip angsuran, sekarang berada di atas -->
+        <main>
+            <section id="arsip-section">
+                <h1 style="text-align: center;">Pembayaran Angsuran Anggota</h1>
+                <table id="arsip-table">
+                    <thead>
+                        <tr>
+                            <th>No. BA</th>
+                            <th>Tanggal BA</th>
+                            <th>No. BP</th>
+                            <th>Jumlah Angsuran</th>
+                            <th>Bunga</th>
+                            <th>Pembayaran Ke</th> <!-- Kolom baru untuk pembayaran keberapa -->
+                            <th>Action</th> <!-- Kolom untuk tombol Kirim -->
+                        </tr>
+                    </thead>
+                    <tbody id="arsip-body">
+                        <!-- Data arsip angsuran akan muncul di sini -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <!-- Bukti Peminjaman akan ditampilkan di bawah arsip angsuran dan disesuaikan dengan layout -->
+        <div class="bukti-container">
+            <h1>Data Pinjaman Anggota </h1>
+            <div class="bukti-info">
+                <!-- Data anggota dan tombol View Details akan ditampilkan di sini -->
+            </div>
+            <button onclick="hapusBuktiPeminjaman()">Hapus Bukti Peminjaman</button>
+            <button onclick="kirimLaporan('pinjaman')">Kirim Laporan Peminjaman</button>
+        </div>
+    </div>
+
+    <!-- Alert yang akan muncul ketika kirim laporan -->
+    <div id="alert" class="alert">
+        Laporan telah berhasil dikirim kepada <br>
+         Ketua Koperasi untuk bulan ini.
+    </div>
+
+    <script src="/assets/js/credit.js"></script>
+</body>
+</html>

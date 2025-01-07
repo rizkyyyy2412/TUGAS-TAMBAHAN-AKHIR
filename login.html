@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #37415C;
+        }
+        .login-container {
+            width: 350px;
+            height: 280px;
+            background: #6BA3BE;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .login-container h1 {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #031716;
+        }
+        .login-container input {
+            font-family: 'Times New Roman', Times, serif;
+            width: 93%;
+            padding: 10px;
+            margin: 11px 0;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+        .login-container button {
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #394048;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #274D60;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p class="error" id="error-msg"></p>
+    </div>
+
+    <script src="assets/js/login.js"></script>
+</body>
+</html>

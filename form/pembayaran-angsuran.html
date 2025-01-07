@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Angsuran</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        main {
+            margin-right: 350px;
+            padding: 20px;
+        }
+
+        #payment-section {
+            max-width: 600px;
+            height: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #payment-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #payment-form label {
+            margin-bottom: 5px;
+        }
+
+        #payment-form input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #payment-form button {
+            width: 100px;
+            padding: 10px 15px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #payment-form button:hover {
+            background-color: #34495e;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Koperasi UG</h2>
+        <a href="formulir-permohonan.html">Formulir Peminjaman</a>
+        <a href="bukti-peminjaman.html">Bukti Peminjaman</a>
+        <a href="pembayaran-angsuran.html">Bayar Angsuran</a>
+        <a href="arsip-angsuran.html">Riwayat</a>
+        <a href="#" onclick="logout()">Keluar</a>
+    </div>
+
+    <main>
+        <section id="payment-section">
+            <form id="payment-form">
+                <h1 style="text-align: center;">Pembayaran Angsuran</h1>
+                <label for="noBP">Nomor BP:</label>
+                <input type="text" id="noBP" name="noBP" required>
+
+                <label for="jumlahAngsuran">Jumlah Angsuran:</label>
+                <input type="text" id="jumlahAngsuran" name="jumlahAngsuran" required>
+
+                <button type="submit">Bayar Angsuran</button>
+            </form>
+
+            <!-- Menampilkan informasi pembayaran -->
+            <div class="payment-info" id="payment-info"></div>
+
+            <div id="error-message"></div>
+        </section>
+    </main>
+
+    <script src="/assets/js/pa.js"></script>
+</body>
+</html>

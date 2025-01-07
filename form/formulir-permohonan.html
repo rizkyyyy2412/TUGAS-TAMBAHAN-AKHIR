@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Permohonan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        .main-content {
+            margin-right: 350px;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            height: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            width: 15%;
+            padding: 10px;
+            background-color: #2c3e50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: rgb(65, 86, 114);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Koperasi UG</h2>
+        <a href="formulir-permohonan.html">Formulir Peminjaman</a>
+        <a href="bukti-peminjaman.html">Bukti Peminjaman</a>
+        <a href="pembayaran-angsuran.html">Bayar Angsuran</a>
+        <a href="arsip-angsuran.html">Riwayat</a>
+        <a href="#" onclick="logout()">Keluar</a>
+    </div>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h1>Formulir Permohonan Pinjaman</h1>
+            <form id="pinjaman-form">
+                <!-- Nomor FPP -->
+                <label for="nomor-fpp">Nomor FPP</label>
+                <input type="text" id="nomor-fpp" name="nomor-fpp" placeholder="Masukkan Nomor FPP" required maxlength="10">
+    
+                <!-- Tanggal Permohonan -->
+                <label for="tanggal-permohonan">Tanggal Permohonan</label>
+                <input type="date" id="tanggal-permohonan" name="tanggal-permohonan" required>
+    
+                <!-- Nomor Anggota -->
+                <label for="nomor-anggota">Nomor Anggota</label>
+                <input type="text" id="nomor-anggota" name="nomor-anggota" placeholder="Masukkan Nomor Anggota" required maxlength="10">
+    
+                <!-- Nama Anggota -->
+                <label for="nama-anggota">Nama Anggota</label>
+                <input type="text" id="nama-anggota" name="nama-anggota" placeholder="Masukkan Nama Anggota" required>
+    
+                <!-- Jumlah Permohonan -->
+                <label for="jumlah-permohonan">Jumlah Permohonan</label>
+                <input type="number" id="jumlah-permohonan" name="jumlah-permohonan" placeholder="Masukkan Jumlah (Rp)" required min="2">
+    
+                <!-- Keperluan -->
+                <label for="keperluan">Keperluan</label>
+                <textarea id="keperluan" name="keperluan" placeholder="Masukkan Keperluan Anda" required></textarea>
+    
+                <!-- Tombol Submit -->
+                <button type="submit">Ajukan Pinjaman</button>
+            </form>
+        </div>
+    </div>
+    <script src="/assets/js/fpp.js"></script>
+</body>
+</html>

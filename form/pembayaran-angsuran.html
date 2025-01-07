@@ -8,29 +8,40 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #2B3647;
+            color: white;
         }
 
         .sidebar {
-            height: 100vh;
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
             position: fixed;
-            padding-top: 20px;
+            top: 0;
+            width: 100%;
+            background-color: #1C2533;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
+            margin: 0;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar div {
+            display: flex;
+            gap: 10px;
+            margin-left: 670px; /* Pindahkan menu ke kanan */
         }
 
         .sidebar a {
-            display: block;
             color: white;
-            padding: 15px 20px;
+            padding: 8px 15px;
             text-decoration: none;
-            margin-bottom: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
         }
 
         .sidebar a:hover {
@@ -38,13 +49,13 @@
         }
 
         main {
-            margin-right: 350px;
-            padding: 20px;
+            margin-left: 30px;
+            padding: 150px;
         }
 
         #payment-section {
             max-width: 600px;
-            height: 650px;
+            height: 450px;
             margin: 0 auto;
             background: white;
             padding: 20px;
@@ -69,7 +80,7 @@
         }
 
         #payment-form button {
-            width: 100px;
+            width: 600px;
             padding: 10px 15px;
             background-color: #2c3e50;
             color: white;
@@ -91,22 +102,24 @@
 <body>
     <div class="sidebar">
         <h2>Koperasi UG</h2>
+        <div>
         <a href="formulir-permohonan.html">Formulir Peminjaman</a>
         <a href="bukti-peminjaman.html">Bukti Peminjaman</a>
         <a href="pembayaran-angsuran.html">Bayar Angsuran</a>
         <a href="arsip-angsuran.html">Riwayat</a>
         <a href="#" onclick="logout()">Keluar</a>
+        </div>
     </div>
 
     <main>
         <section id="payment-section">
             <form id="payment-form">
-                <h1 style="text-align: center;">Pembayaran Angsuran</h1>
-                <label for="noBP">Nomor BP:</label>
-                <input type="text" id="noBP" name="noBP" required>
+                <h1 style="text-align: center; color: rgb(54, 54, 54); font-family: 'Times New Roman', Times, serif;">Pembayaran Angsuran</h1>
+                <label for="noBP" style="color: #2c3e50;">Nomor Bukti Peminjaman :</label>
+                <input type="text" id="noBP" name="noBP" placeholder="Massukan Nomor BP" required min="10">
 
-                <label for="jumlahAngsuran">Jumlah Angsuran:</label>
-                <input type="text" id="jumlahAngsuran" name="jumlahAngsuran" required>
+                <label for="jumlahAngsuran" style="color: #2c3e50;">Jumlah Angsuran :</label>
+                <input type="text" id="jumlahAngsuran" name="jumlahAngsuran" placeholder="Masukkan Jumlah (Rp)" required min="2">
 
                 <button type="submit">Bayar Angsuran</button>
             </form>

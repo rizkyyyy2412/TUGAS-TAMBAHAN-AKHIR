@@ -42,21 +42,21 @@ if (pinjamanData) {
     // Menyusun tampilan anggota dengan format angka //
 
     const anggotaBox = `
-        <div class="anggota-box">
-            <h3>${pinjamanData.namaAnggota}</h3>
-            <p><strong>Nomor Anggota:</strong> ${pinjamanData.nomorAnggota}</p>
-            <p><strong>Jumlah Permohonan:</strong> ${formatRupiah(jumlahRealisasi)}</p>
-            <a href="#" class="view-details" onclick="toggleDetails(event)">View Details</a>
-            <div class="details" style="display: none;">
-                <p><strong>Nomor BP:</strong> ${noBp}</p>
-                <p><strong>Tanggal BP:</strong> ${tglBp}</p>
-                <p><strong>Jumlah Realisasi:</strong> ${formatRupiah(jumlahRealisasi)}</p>
-                <p><strong>Lama Angsuran:</strong> ${lamaAngsuran} bulan</p>
-                <p><strong>Jumlah Angsuran:</strong> ${formatRupiah(jumlahAngsuran)} per bulan</p>
-                <p><strong>Bunga:</strong> ${bungaPersen * 100}% ( ${formatRupiah(bunga)})</p>
-            </div>
-        </div>
-    `;
+    <div class="anggota-box" style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 20px; background-color:rgba(162, 166, 173, 0.45); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h3 style="margin-bottom: 15px; color: #2c3e50;">Nama : ${pinjamanData.namaAnggota}</h3>
+        <hr style="border: none; border-top: 1px solid #ddd; margin-bottom: 15px;">
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Nomor Anggota:</strong> ${pinjamanData.nomorAnggota}</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Jumlah Pinjaman:</strong> ${formatRupiah(jumlahRealisasi)}</p>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;">
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Nomor Bayar Peminjaman:</strong> ${noBp}</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Tanggal Bukti Peminjaman:</strong> ${tglBp}</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Jumlah Realisasi:</strong> ${formatRupiah(jumlahRealisasi)}</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Lama Angsuran:</strong> ${lamaAngsuran} bulan</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Jumlah Angsuran Yang Harus Dibayar:</strong> ${formatRupiah(jumlahAngsuran)} / Bulan</p>
+        <p style="margin: 10px 0; line-height: 1.6;"><strong>Bunga:</strong> ${bungaPersen * 100}% </p>
+    </div>
+`;
+
 
     // Menampilkan anggota dan bukti peminjaman //
 
@@ -69,17 +69,7 @@ if (pinjamanData) {
 }
 
 
-// Fungsi untuk menampilkan/menghiding detail //
 
-    function toggleDetails(event) {
-        event.preventDefault();
-        const details = event.target.nextElementSibling;
-        if (details.style.display === "none" || details.style.display === "") {
-        details.style.display = "block";
-        } else {
-        details.style.display = "none";
-        }
-    }
     function logout() {
             alert("Anda telah logout.");
             window.location.href = "../login.html"; // Ke halaman login jika logout //

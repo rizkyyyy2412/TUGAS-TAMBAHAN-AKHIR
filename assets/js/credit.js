@@ -8,17 +8,6 @@ function formatRupiah(angka) {
         return 'Rp ' + angka.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
-// Fungsi untuk menampilkan/menghiding detail //
-
-function toggleDetails(event) {
-    event.preventDefault();
-    const details = event.target.nextElementSibling;
-        if (details.style.display === "none" || details.style.display === "") {
-            details.style.display = "block";
-        } else {
-            details.style.display = "none";
-        }
-}
 
 // Fungsi untuk mengirim laporan //
 
@@ -86,33 +75,68 @@ renderArsipAngsuran();
 
 const pinjamanData = JSON.parse(localStorage.getItem('pinjamanData'));
 
-        if (pinjamanData) {
-            const noBp = pinjamanData.noBP; // Fungsi Ambil nomor Bukti Peminjaman yang sudah disimpan //
-            const tglBp = new Date().toLocaleDateString(); // Tanggal Bukti Peminjaman //
-            const jumlahRealisasi = parseFloat(pinjamanData.jumlahPermohonan); // Fungsi untuk Pastikan menjadi angka //
-            const lamaAngsuran = 12; // Lama Angsuran ( Misalnya 12 bulan ) //
-            const jumlahAngsuran = (jumlahRealisasi / lamaAngsuran).toFixed(2); // Pembulatan 2 desimal //
-            
-            const anggotaBox = `
-                <div class="anggota-box">
-                    <h3>${pinjamanData.namaAnggota}</h3>
-                    <p><strong>Nomor Anggota:</strong> ${pinjamanData.nomorAnggota}</p>
-                    <p><strong>Jumlah Permohonan:</strong> ${formatRupiah(jumlahRealisasi)}</p>
-                    <a href="#" class="view-details" onclick="toggleDetails(event)">View Details</a>
-                    <div class="details">
-                        <p><strong>Nomor BP:</strong> ${noBp}</p>
-                        <p><strong>Tanggal BP:</strong> ${tglBp}</p>
-                        <p><strong>Jumlah Realisasi:</strong> ${formatRupiah(jumlahRealisasi)}</p>
-                        <p><strong>Lama Angsuran:</strong> ${lamaAngsuran} bulan</p>
-                        <p><strong>Jumlah Angsuran:</strong> ${formatRupiah(jumlahAngsuran)} per bulan</p>
-                    </div>
-                </div>
-            `;
+if (pinjamanData) {
+    // Ambil nomor Bukti Peminjaman (BP) yang sudah disimpan
+    const noBp = pinjamanData.noBP;
 
-            document.querySelector('.bukti-info').innerHTML = anggotaBox;
-        } else {
-            document.querySelector('.bukti-info').innerHTML = "<p>Data peminjaman tidak ditemukan. Silakan ajukan permohonan pinjaman terlebih dahulu.</p>";
-        }
+    // Tanggal Bukti Peminjaman (format lokal)
+    const tglBp = new Date().toLocaleDateString();
+
+    // Pastikan jumlah permohonan menjadi angka
+    const jumlahRealisasi = parseFloat(pinjamanData.jumlahPermohonan);
+
+    // Lama angsuran (contoh: 12 bulan)
+    const lamaAngsuran = 12;
+
+    // Hitung jumlah angsuran per bulan dan bulatkan ke 2 desimal
+    const jumlahAngsuran = (jumlahRealisasi / lamaAngsuran).toFixed(2);
+
+    // Template HTML untuk menampilkan informasi anggota
+    const anggotaBox = `
+    <div class="anggota-box">
+        <h3>Nama Anggota: ${pinjamanData.namaAnggota}</h3>
+        <p><strong>Nomor Anggota:</strong> ${pinjamanData.nomorAnggota}</p>
+        <p><strong>Jumlah Pinjaman:</strong> ${formatRupiah(jumlahRealisasi)}</p>
+
+        <!-- Detail informasi peminjaman sebagai tabel -->
+        <div class="details" style="display: block;">
+            <table class="detail-table">
+                <tr>
+                    <th>Nomor Bayar Peminjaman</th>
+                    <td>${noBp}</td>
+                </tr>
+                <tr>
+                    <th>Tanggal Bukti Peminjaman</th>
+                    <td>${tglBp}</td>
+                </tr>
+                <tr>
+                    <th>Jumlah Realisasi</th>
+                    <td>${formatRupiah(jumlahRealisasi)}</td>
+                </tr>
+                <tr>
+                    <th>Lama Angsuran</th>
+                    <td>${lamaAngsuran} bulan</td>
+                </tr>
+                <tr>
+                    <th>Jumlah Angsuran</th>
+                    <td>${formatRupiah(jumlahAngsuran)} / Bulan</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+`;
+
+
+    // Tambahkan informasi peminjaman ke elemen dengan class "bukti-info"
+    document.querySelector('.bukti-info').innerHTML = anggotaBox;
+} else {
+    // Tampilkan pesan jika data peminjaman tidak ditemukan
+    document.querySelector('.bukti-info').innerHTML = `
+        <p>Data peminjaman tidak ditemukan. Silakan ajukan permohonan pinjaman terlebih dahulu.</p>
+    `;
+}
+
+
 
 // untuk menghapus bukti peminjaman //
 

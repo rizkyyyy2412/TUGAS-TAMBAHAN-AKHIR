@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -13,24 +13,31 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #37415C;
+            background-image: url('img/body.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
         }
         .login-container {
-            width: 350px;
-            height: 280px;
-            background: #6BA3BE;
+            width: 400px;
+            height: 390px;
+            background: #fafafabb;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-
         .login-container h1 {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
             text-align: center;
             margin-bottom: 25px;
-            font-size: 24px;
-            color: #031716;
+            font-size: 50px;
+            color: #040404;
+        }
+        .login-container p {
+            margin: 5px 0; /* Mengurangi jarak vertikal */
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            color: #333;
         }
         .login-container input {
             font-family: 'Times New Roman', Times, serif;
@@ -38,23 +45,23 @@
             padding: 10px;
             margin: 11px 0;
             border: 2px solid #ccc;
-            border-radius: 15px;
+            border-radius: 5px;
             font-size: 16px;
         }
         .login-container button {
             font-family: 'Times New Roman', Times, serif;
-            width: 100%;
+            width: 20%;
             margin-top: 10px;
             padding: 10px;
-            background-color: #394048;
+            background-color: #292c2f;
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 16px;
+            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
         }
         .login-container button:hover {
-            background-color: #274D60;
+            background-color: #000000;
         }
         .error {
             color: red;
@@ -65,7 +72,9 @@
 <body>
     <div class="login-container">
         <h1>Login</h1>
+        <p>Massukan Username:</p>
         <input type="text" id="username" placeholder="Username">
+        <p>Massukan Password:</p>
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
         <p class="error" id="error-msg"></p>

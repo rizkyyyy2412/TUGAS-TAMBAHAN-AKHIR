@@ -6,119 +6,153 @@
     <title>Menu Utama</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #37415C;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #2B3647;
+}
 
-        .menu-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            width: 500px;
-            height: 500px;
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative; /* Untuk memposisikan tombol logout */
-        }
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1C2533;
+    color: white;
+    padding: 20px 30px; /* Perbesar padding header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .logout-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ffffff;
-            color: #222222;
-            border: 1px solid #ddd;
-            padding: 10px 15px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            
-            
-        }
+.header h1 {
+    font-size: 28px; /* Perbesar font judul */
+    margin: 0;
+    padding-left: 2%;
+    font-family: 'Times New Roman', Times, serif;
+}
 
-        .logout-button:hover {
-            transform: translateY(-5px); /* Efek hover seperti menu-item */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan serupa */
-        }
+.logout-button {
+    background-color: #F44336;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Perbesar tombol logout */
+    font-size: 16px; /* Perbesar font tombol */
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-right: 20px;
+}
 
-        .menu-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            background-color: #fff;
-            transition: transform 0.2s;
-            text-decoration: none;
-            color: inherit;
-        }
+.logout-button:hover {
+    background-color: #D32F2F;
+}
 
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+.menu-container {
+    margin-top: 120px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Perbesar kolom grid */
+    gap: 30px; /* Tambahkan jarak antar menu */
+    width: 95%; /* Lebarkan menu */
+    max-width: 900px; /* Atur ukuran maksimum container */
+    padding: 40px; /* Tambahkan padding container */
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
 
-        .menu-item i {
-            font-size: 40px;
-            margin-bottom: 10px;
-            color: #222222;
-        }
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 30px; /* Perbesar padding item */
+    text-align: center;
+    background-color: #f5f5f5;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    color: #333;
+}
 
-        .menu-item span {
-            font-size: 16px;
-            font-weight: bold;
-            color: #4f4c4c;
-        }
+.menu-item:hover {
+    transform: scale(1.1); /* Lebih responsif saat hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
 
-        .menu-title {
-            font-family: 'Times New Roman', Times, serif;
-            grid-column: span 2;
-            text-align: center;
-            font-size: 35px;
-            font-weight: bold;
-            margin-top: 5%;
-        }
+.menu-item i {
+    font-size: 60px; /* Perbesar ikon */
+    margin-bottom: 15px;
+    color: #37415C;
+}
+
+.menu-item span {
+    font-size: 20px; /* Perbesar teks */
+    font-weight: bold;
+    color: #4f4c4c;
+}
+
+.menu-item i {
+        color: #4CAF50;
+    }
+
+    .menu-item .fa-dollar-sign {
+        color: #FF6347;
+    }
+
+    .menu-item .fa-address-book {
+        color: #1E90FF; 
+    }
+
+    .menu-item .fa-history {
+        color: #FFD700;
+    }
+
+    .menu-item .fa-book {
+        color: #8A2BE2;
+    }
     </style>
 </head>
 <body>
-    <div class="menu-container">
-        <!-- Tombol Logout -->
-        <button class="logout-button" onclick="logout()"><i class="fas fa-sign-out"></i> Logout</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>Menu Koperasi UG</h1>
+        <button class="logout-button" onclick="logout()">Keluar</button>
+    </div>
 
-        <div class="menu-title">Menu Koperasi UG</div>
+    <!-- Menu Grid -->
+    <div class="menu-container">
         <a href="form/pembayaran-angsuran.html" class="menu-item">
-            <i class="fas fa-wallet"></i>
+            <i class="far fa-dollar-sign"></i>
             <span>Pembayaran Angsuran</span>
         </a>
         <a href="form/formulir-permohonan.html" class="menu-item">
-            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-address-book"></i>
             <span>Form Peminjaman</span>
         </a>
         <a href="form/arsip-angsuran.html" class="menu-item">
-            <i class="fas fa-chart-line"></i>
+            <i class="fas fa-history"></i>
             <span>Riwayat Angsuran</span>
         </a>
         <a href="form/bukti-peminjaman.html" class="menu-item">
-            <i class="fas fa-receipt"></i>
+            <i class="fa fa-book"></i>
             <span>Bukti Peminjaman</span>
         </a>
     </div>
 
-    <script src="assets/js/login.js"></script>
+    <script>
+        function logout() {
+            alert('Anda telah keluar!');
+            // Tambahkan logika logout sesuai kebutuhan //
+        }
+    </script>
 </body>
 </html>

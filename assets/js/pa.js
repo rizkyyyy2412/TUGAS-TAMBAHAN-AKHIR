@@ -38,7 +38,22 @@ paymentForm.addEventListener('submit', function(event) {
     // Fungsi Untuk Memastikan jumlah angsuran tidak melebihi 12 ( 12 bulan / 1 tahun ) //
 
     if (angsuranKe > 12) {
-        document.getElementById('error-message').innerText = 'Angsuran telah lunas.';
+        document.getElementById('error-message').innerHTML = `
+            <div style="
+                border: 2px dashed #28a745; 
+                background-color: #dfffe2; 
+                color: #155724; 
+                padding: 15px; 
+                border-radius: 8px; 
+                max-width: 400px; 
+                margin: 20px auto;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            ">
+                <h3 style="margin: 0; font-size: 18px;">🎉 Selamat!</h3>
+                <p style="margin: 10px 0;">Angsuran telah lunas. Terima kasih atas kepercayaan Anda!</p>
+            </div>
+        `;
         return;
     }
 
@@ -62,17 +77,24 @@ paymentForm.addEventListener('submit', function(event) {
     arsipAngsuran.push(pembayaranAngsuran);
     localStorage.setItem('arsipAngsuran', JSON.stringify(arsipAngsuran));
 
-    // Untuk Menampilkan informasi pembayaran angsuran keberapa //
+// Menampilkan pesan sukses pembayaran angsuran //
 
-    document.getElementById('payment-info').innerHTML = `Anda Berhasil Membayar angsuran ke-${angsuranKe}.<br><br>`;
-
-    // Untuk Menampilkan pesan sukses //
-
-    document.getElementById('error-message').innerHTML = `Pembayaran angsuran berhasil! No. ${pembayaranAngsuran.noBA}.<br><br>`;
-
-    // Untuk Menampilkan link cek arsip angsuran //
-    
-    document.getElementById('error-message').innerHTML += `<a href="/form/arsip-angsuran.html" style="color: blue; text-decoration: underline;"> Cek </a>`;
+document.getElementById('payment-info').innerHTML = `
+    <div style="
+        border: 1px solid #2c3e50; 
+        background-color: #f9f9f9; 
+        color: #2c3e50; 
+        padding: 15px; 
+        border-radius: 5px; 
+        max-width: 400px; 
+        margin: 20px auto;
+        text-align: left;
+    ">
+        <p><strong>Anda Berhasil Membayar angsuran ke-${angsuranKe}.</strong></p>
+        <p>Pembayaran angsuran berhasil!<br><br> No. ${pembayaranAngsuran.noBA}.</p>
+        <a href="/form/arsip-angsuran.html" style="color: blue; text-decoration: underline;">Cek</a>
+    </div>
+`;
 
     // Mereset form
     paymentForm.reset();
